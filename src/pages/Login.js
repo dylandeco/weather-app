@@ -11,8 +11,6 @@ import {
   TextField,
   Typography
 } from '@material-ui/core';
-import FacebookIcon from 'src/icons/Facebook';
-import GoogleIcon from 'src/icons/Google';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,7 +18,7 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Login | Material Kit</title>
+        <title>Login | Weather app</title>
       </Helmet>
       <Box
         sx={{
@@ -34,8 +32,8 @@ const Login = () => {
         <Container maxWidth="sm">
           <Formik
             initialValues={{
-              email: 'demo@devias.io',
-              password: 'Password123'
+              email: '',
+              password: ''
             }}
             validationSchema={Yup.object().shape({
               email: Yup.string()
@@ -44,8 +42,47 @@ const Login = () => {
                 .required('Email is required'),
               password: Yup.string().max(255).required('Password is required')
             })}
-            onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
+            onSubmit={(values) => {
+              const url =
+                'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA3naC0zSNEqnpVZmkk4vCErN4zZS2OdM4';
+              fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                  email: values.email,
+                  password: values.password,
+                  returnSecureToken: true
+                }),
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              })
+                .then((res) => {
+                  //setIsLoading(false);
+                  if (res.ok) {
+                    return res.json();
+                  } else {
+                    return res.json().then((data) => {
+                      let errorMessage = 'Authentication failed!';
+                      // if (data && data.error && data.error.message) {
+                      //   errorMessage = data.error.message;
+                      // }
+
+                      throw new Error(errorMessage);
+                    });
+                  }
+                })
+                .then((data) => {
+                  /*
+                    const expirationTime = new Date(
+                      new Date().getTime() + +data.expiresIn * 1000
+                    );
+                    */
+                  //authCtx.login(data.idToken, expirationTime.toISOString());
+                  navigate('/app/dashboard', { replace: true });
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
             }}
           >
             {({
@@ -58,55 +95,9 @@ const Login = () => {
               values
             }) => (
               <form onSubmit={handleSubmit}>
-                <Box sx={{ mb: 3 }}>
+                <Box sx={{ mb: 1 }}>
                   <Typography color="textPrimary" variant="h2">
                     Sign in
-                  </Typography>
-                  <Typography
-                    color="textSecondary"
-                    gutterBottom
-                    variant="body2"
-                  >
-                    Sign in on the internal platform
-                  </Typography>
-                </Box>
-                <Grid container spacing={3}>
-                  <Grid item xs={12} md={6}>
-                    <Button
-                      color="primary"
-                      fullWidth
-                      startIcon={<FacebookIcon />}
-                      onClick={handleSubmit}
-                      size="large"
-                      variant="contained"
-                    >
-                      Login with Facebook
-                    </Button>
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <Button
-                      fullWidth
-                      startIcon={<GoogleIcon />}
-                      onClick={handleSubmit}
-                      size="large"
-                      variant="contained"
-                    >
-                      Login with Google
-                    </Button>
-                  </Grid>
-                </Grid>
-                <Box
-                  sx={{
-                    pb: 1,
-                    pt: 3
-                  }}
-                >
-                  <Typography
-                    align="center"
-                    color="textSecondary"
-                    variant="body1"
-                  >
-                    or login with email address
                   </Typography>
                 </Box>
                 <TextField
@@ -138,7 +129,6 @@ const Login = () => {
                 <Box sx={{ py: 2 }}>
                   <Button
                     color="primary"
-                    disabled={isSubmitting}
                     fullWidth
                     size="large"
                     type="submit"

@@ -19,7 +19,7 @@ const Register = () => {
   return (
     <>
       <Helmet>
-        <title>Register | Material Kit</title>
+        <title>Register | Weather app</title>
       </Helmet>
       <Box
         sx={{
@@ -48,11 +48,49 @@ const Register = () => {
                 .max(255)
                 .required('First name is required'),
               lastName: Yup.string().max(255).required('Last name is required'),
-              password: Yup.string().max(255).required('password is required'),
-              policy: Yup.boolean().oneOf([true], 'This field must be checked')
+              password: Yup.string().max(255).required('password is required')
             })}
-            onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
+            onSubmit={(values) => {
+              const url =
+                'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA3naC0zSNEqnpVZmkk4vCErN4zZS2OdM4';
+              fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                  email: values.email,
+                  password: values.password,
+                  returnSecureToken: true
+                }),
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              })
+                .then((res) => {
+                  //setIsLoading(false);
+                  if (res.ok) {
+                    return res.json();
+                  } else {
+                    return res.json().then((data) => {
+                      let errorMessage = 'Authentication failed!';
+                      // if (data && data.error && data.error.message) {
+                      //   errorMessage = data.error.message;
+                      // }
+
+                      throw new Error(errorMessage);
+                    });
+                  }
+                })
+                .then((data) => {
+                  /*
+                    const expirationTime = new Date(
+                      new Date().getTime() + +data.expiresIn * 1000
+                    );
+                    */
+                  //authCtx.login(data.idToken, expirationTime.toISOString());
+                  navigate('/app/dashboard', { replace: true });
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
             }}
           >
             {({
@@ -65,7 +103,7 @@ const Register = () => {
               values
             }) => (
               <form onSubmit={handleSubmit}>
-                <Box sx={{ mb: 3 }}>
+                <Box sx={{ mb: 0 }}>
                   <Typography color="textPrimary" variant="h2">
                     Create new account
                   </Typography>
@@ -127,31 +165,6 @@ const Register = () => {
                   value={values.password}
                   variant="outlined"
                 />
-                <Box
-                  sx={{
-                    alignItems: 'center',
-                    display: 'flex',
-                    ml: -1
-                  }}
-                >
-                  <Checkbox
-                    checked={values.policy}
-                    name="policy"
-                    onChange={handleChange}
-                  />
-                  <Typography color="textSecondary" variant="body1">
-                    I have read the{' '}
-                    <Link
-                      color="primary"
-                      component={RouterLink}
-                      to="#"
-                      underline="always"
-                      variant="h6"
-                    >
-                      Terms and Conditions
-                    </Link>
-                  </Typography>
-                </Box>
                 {Boolean(touched.policy && errors.policy) && (
                   <FormHelperText error>{errors.policy}</FormHelperText>
                 )}
