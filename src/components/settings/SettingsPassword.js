@@ -25,10 +25,7 @@ const SettingsPassword = (props) => {
   return (
     <form {...props}>
       <Card>
-        <CardHeader
-          subheader="Update password"
-          title="Password"
-        />
+        <CardHeader subheader="Update password" title="Password" />
         <Divider />
         <CardContent>
           <TextField
@@ -60,10 +57,7 @@ const SettingsPassword = (props) => {
             p: 2
           }}
         >
-          <Button
-            color="primary"
-            variant="contained"
-          >
+          <Button color="primary" variant="contained">
             Update
           </Button>
         </Box>

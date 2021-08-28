@@ -14,17 +14,10 @@ import {
 const SettingsNotifications = (props) => (
   <form {...props}>
     <Card>
-      <CardHeader
-        subheader="Manage the notifications"
-        title="Notifications"
-      />
+      <CardHeader subheader="Manage the notifications" title="Notifications" />
       <Divider />
       <CardContent>
-        <Grid
-          container
-          spacing={6}
-          wrap="wrap"
-        >
+        <Grid container spacing={6} wrap="wrap">
           <Grid
             item
             md={4}
@@ -35,42 +28,20 @@ const SettingsNotifications = (props) => (
             }}
             xs={12}
           >
-            <Typography
-              color="textPrimary"
-              gutterBottom
-              variant="h6"
-            >
+            <Typography color="textPrimary" gutterBottom variant="h6">
               Notifications
             </Typography>
             <FormControlLabel
-              control={(
-                <Checkbox
-                  color="primary"
-                  defaultChecked
-                />
-              )}
+              control={<Checkbox color="primary" defaultChecked />}
               label="Email"
             />
             <FormControlLabel
-              control={(
-                <Checkbox
-                  color="primary"
-                  defaultChecked
-                />
-              )}
+              control={<Checkbox color="primary" defaultChecked />}
               label="Push Notifications"
             />
+            <FormControlLabel control={<Checkbox />} label="Text Messages" />
             <FormControlLabel
-              control={<Checkbox />}
-              label="Text Messages"
-            />
-            <FormControlLabel
-              control={(
-                <Checkbox
-                  color="primary"
-                  defaultChecked
-                />
-              )}
+              control={<Checkbox color="primary" defaultChecked />}
               label="Phone calls"
             />
           </Grid>
@@ -84,20 +55,11 @@ const SettingsNotifications = (props) => (
             }}
             xs={12}
           >
-            <Typography
-              color="textPrimary"
-              gutterBottom
-              variant="h6"
-            >
+            <Typography color="textPrimary" gutterBottom variant="h6">
               Messages
             </Typography>
             <FormControlLabel
-              control={(
-                <Checkbox
-                  color="primary"
-                  defaultChecked
-                />
-              )}
+              control={<Checkbox color="primary" defaultChecked />}
               label="Email"
             />
             <FormControlLabel
@@ -105,12 +67,7 @@ const SettingsNotifications = (props) => (
               label="Push Notifications"
             />
             <FormControlLabel
-              control={(
-                <Checkbox
-                  color="primary"
-                  defaultChecked
-                />
-              )}
+              control={<Checkbox color="primary" defaultChecked />}
               label="Phone calls"
             />
           </Grid>
@@ -124,10 +81,7 @@ const SettingsNotifications = (props) => (
           p: 2
         }}
       >
-        <Button
-          color="primary"
-          variant="contained"
-        >
+        <Button color="primary" variant="contained">
           Save
         </Button>
       </Box>

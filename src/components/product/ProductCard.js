@@ -28,36 +28,19 @@ const ProductCard = ({ product, ...rest }) => (
           pb: 3
         }}
       >
-        <Avatar
-          alt="Product"
-          src={product.media}
-          variant="square"
-        />
+        <Avatar alt="Product" src={product.media} variant="square" />
       </Box>
-      <Typography
-        align="center"
-        color="textPrimary"
-        gutterBottom
-        variant="h4"
-      >
+      <Typography align="center" color="textPrimary" gutterBottom variant="h4">
         {product.title}
       </Typography>
-      <Typography
-        align="center"
-        color="textPrimary"
-        variant="body1"
-      >
+      <Typography align="center" color="textPrimary" variant="body1">
         {product.description}
       </Typography>
     </CardContent>
     <Box sx={{ flexGrow: 1 }} />
     <Divider />
     <Box sx={{ p: 2 }}>
-      <Grid
-        container
-        spacing={2}
-        sx={{ justifyContent: 'space-between' }}
-      >
+      <Grid container spacing={2} sx={{ justifyContent: 'space-between' }}>
         <Grid
           item
           sx={{
@@ -89,9 +72,7 @@ const ProductCard = ({ product, ...rest }) => (
             sx={{ pl: 1 }}
             variant="body2"
           >
-            {product.totalDownloads}
-            {' '}
-            Downloads
+            {product.totalDownloads} Downloads
           </Typography>
         </Grid>
       </Grid>

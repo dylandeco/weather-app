@@ -1,33 +1,16 @@
-import {
-  Avatar,
-  Card,
-  CardContent,
-  Grid,
-  Typography
-} from '@material-ui/core';
+import { Avatar, Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { indigo } from '@material-ui/core/colors';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 
 const TotalProfit = (props) => (
   <Card {...props}>
     <CardContent>
-      <Grid
-        container
-        spacing={3}
-        sx={{ justifyContent: 'space-between' }}
-      >
+      <Grid container spacing={3} sx={{ justifyContent: 'space-between' }}>
         <Grid item>
-          <Typography
-            color="textSecondary"
-            gutterBottom
-            variant="h6"
-          >
+          <Typography color="textSecondary" gutterBottom variant="h6">
             TOTAL PROFIT
           </Typography>
-          <Typography
-            color="textPrimary"
-            variant="h3"
-          >
+          <Typography color="textPrimary" variant="h3">
             $23,200
           </Typography>
         </Grid>
