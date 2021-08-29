@@ -60,7 +60,6 @@ const Login = () => {
                 }
               })
                 .then((res) => {
-                  //setIsLoading(false);
                   if (res.ok) {
                     return res.json();
                   } else {
