@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import InputIcon from '@material-ui/icons/Input';
-import Logo from './Logo';
+import CloudIcon from '@material-ui/icons/Cloud';
 import AuthContext from 'src/store/auth-context';
 
 const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
@@ -28,7 +28,7 @@ const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
     <AppBar elevation={0} {...rest}>
       <Toolbar>
         <RouterLink to="/">
-          <Logo />
+          <CloudIcon style={{ color: 'white', fontSize: 40 }} />
         </RouterLink>
         <Box sx={{ flexGrow: 1 }} />
         <Hidden lgDown>
