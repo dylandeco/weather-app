@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
@@ -12,12 +12,15 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import InputIcon from '@material-ui/icons/Input';
 import Logo from './Logo';
+import AuthContext from 'src/store/auth-context';
 
 const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
   const [notifications] = useState([]);
   const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
 
   const onLogoutHandler = () => {
+    authCtx.logout();
     navigate('/login', { replace: true });
   };
 

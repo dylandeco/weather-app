@@ -11,9 +11,12 @@ import {
   TextField,
   Typography
 } from '@material-ui/core';
+import { useContext } from 'react';
+import AuthContext from 'src/store/auth-context';
 
 const Login = () => {
   const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
 
   return (
     <>
@@ -72,12 +75,10 @@ const Login = () => {
                   }
                 })
                 .then((data) => {
-                  /*
-                    const expirationTime = new Date(
-                      new Date().getTime() + +data.expiresIn * 1000
-                    );
-                    */
-                  //authCtx.login(data.idToken, expirationTime.toISOString());
+                  const expirationTime = new Date(
+                    new Date().getTime() + +data.expiresIn * 1000
+                  );
+                  authCtx.login(data.idToken, expirationTime.toISOString());
                   navigate('/app/dashboard', { replace: true });
                 })
                 .catch((err) => {
