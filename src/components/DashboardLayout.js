@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { experimentalStyled } from '@material-ui/core';
 import DashboardNavbar from './DashboardNavbar';
-import DashboardSidebar from './DashboardSidebar';
 
 const DashboardLayoutRoot = experimentalStyled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -16,10 +15,7 @@ const DashboardLayoutWrapper = experimentalStyled('div')(({ theme }) => ({
   display: 'flex',
   flex: '1 1 auto',
   overflow: 'hidden',
-  paddingTop: 64,
-  [theme.breakpoints.up('lg')]: {
-    paddingLeft: 256
-  }
+  paddingTop: 64
 }));
 
 const DashboardLayoutContainer = experimentalStyled('div')({
@@ -40,10 +36,6 @@ const DashboardLayout = () => {
   return (
     <DashboardLayoutRoot>
       <DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} />
-      <DashboardSidebar
-        onMobileClose={() => setMobileNavOpen(false)}
-        openMobile={isMobileNavOpen}
-      />
       <DashboardLayoutWrapper>
         <DashboardLayoutContainer>
           <DashboardLayoutContent>
