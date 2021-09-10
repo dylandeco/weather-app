@@ -2,19 +2,26 @@ import { Helmet } from 'react-helmet';
 import { useState, useEffect } from 'react';
 import { Box, Container, Grid } from '@material-ui/core';
 import CitySelector from 'src/components/dashboard/CitySelector';
-import Sales from 'src/components/dashboard//Sales';
 import UseFetch from 'src/hooks/UseFetch';
 import { API_KEY, API_URL } from 'src/api/config';
 import WeatherList from 'src/components/dashboard/WeatherList';
+import WeatherChart from 'src/components/dashboard/WeatherChart';
 
 const Dashboard = () => {
   const [data, setData] = useState();
 
-  const getContent = () => {
+  const getCards = () => {
     //if (error) return <h2>Error when fetching: {error}</h2>;
     //if (!data && isLoading) return <h2>LOADING...</h2>;
     if (!data) return null;
     return <WeatherList weather={data.daily} />;
+  };
+
+  const getChart = () => {
+    //if (error) return <h2>Error when fetching: {error}</h2>;
+    //if (!data && isLoading) return <h2>LOADING...</h2>;
+    if (!data) return null;
+    return <WeatherChart weather={data.daily} />;
   };
 
   async function fetchWeatherData(city) {
@@ -57,10 +64,10 @@ const Dashboard = () => {
         <Container maxWidth={false}>
           <Grid container spacing={3}>
             <Grid item lg={12} sm={12} xl={12} xs={12}>
-              {getContent()}
+              {getCards()}
             </Grid>
             <Grid item lg={12} md={12} xl={12} xs={12}>
-              <Sales />
+              {getChart()}
             </Grid>
           </Grid>
         </Container>

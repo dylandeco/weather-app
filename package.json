@@ -34,6 +34,8 @@
     "chart.js": "^2.9.4",
     "clsx": "^1.1.1",
     "formik": "^2.1.5",
+    "highcharts": "^9.2.2",
+    "highcharts-react-official": "^3.0.0",
     "history": "^5.0.0",
     "i18n-iso-countries": "^6.8.0",
     "install": "^0.13.0",
