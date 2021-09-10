@@ -9,10 +9,10 @@ import {
   IconButton,
   Toolbar
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
 import InputIcon from '@material-ui/icons/Input';
 import CloudIcon from '@material-ui/icons/Cloud';
 import AuthContext from 'src/store/auth-context';
+import CitySelector from 'src/components/dashboard/CitySelector';
 
 const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
   const [notifications] = useState([]);
@@ -31,16 +31,9 @@ const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
           <CloudIcon style={{ color: 'white', fontSize: 40 }} />
         </RouterLink>
         <Box sx={{ flexGrow: 1 }} />
-        <Hidden lgDown>
-          <IconButton onClick={onLogoutHandler} color="inherit">
-            <InputIcon />
-          </IconButton>
-        </Hidden>
-        <Hidden lgUp>
-          <IconButton color="inherit" onClick={onMobileNavOpen}>
-            <MenuIcon />
-          </IconButton>
-        </Hidden>
+        <IconButton onClick={onLogoutHandler} color="inherit">
+          <InputIcon />
+        </IconButton>
       </Toolbar>
     </AppBar>
   );
