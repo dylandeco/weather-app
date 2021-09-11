@@ -33,9 +33,9 @@ const Dashboard = () => {
 
     const weatherResponse = await fetch(
       `${API_URL}/data/2.5/onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=current,minutely,hourly,alerts&units=metric&cnt=7&appid=${API_KEY}`
-    );
-    const data = await weatherResponse.json();
-    return data;
+    ).then((response) => response.json());
+    //const data = await weatherResponse.json();
+    return weatherResponse;
   }
 
   return (
@@ -51,7 +51,7 @@ const Dashboard = () => {
           py: 3
         }}
       >
-        <Container maxWidth={false} height="100%">
+        <Container sx={{ display: 'flex', height: '100%' }} maxWidth={false}>
           <Grid container spacing={6}>
             <Grid item xs={12}>
               <CitySelector

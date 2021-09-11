@@ -66,6 +66,8 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       <Box sx={{ p: 1 }}>
         <List sx={{ py: 1 }}>
           <ListItem
+            component={RouterLink}
+            to="/app/dashboard"
             button
             selected={selectedIndex === 0}
             onClick={(event) => handleListItemClick(event, 0)}
@@ -77,6 +79,8 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           </ListItem>
           <ListItem
             sx={{ py: 1 }}
+            component={RouterLink}
+            to="/app/map"
             button
             selected={selectedIndex === 1}
             onClick={(event) => handleListItemClick(event, 1)}

@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import DashboardLayout from 'src/components/DashboardLayout';
 import MainLayout from 'src/components/MainLayout';
 import Dashboard from 'src/pages/Dashboard';
+import Map from 'src/pages/Map';
 import Login from 'src/pages/Login';
 import NotFound from 'src/pages/NotFound';
 import Register from 'src/pages/Register';
@@ -12,6 +13,7 @@ const routes = [
     element: <DashboardLayout />,
     children: [
       { path: 'dashboard', element: <Dashboard /> },
+      { path: 'map', element: <Map /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },
