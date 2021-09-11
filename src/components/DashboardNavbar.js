@@ -12,10 +12,8 @@ import {
 import InputIcon from '@material-ui/icons/Input';
 import CloudIcon from '@material-ui/icons/Cloud';
 import AuthContext from 'src/store/auth-context';
-import CitySelector from 'src/components/dashboard/CitySelector';
 
 const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
-  const [notifications] = useState([]);
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
 

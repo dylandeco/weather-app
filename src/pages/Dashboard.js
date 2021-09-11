@@ -43,6 +43,7 @@ const Dashboard = () => {
       <Helmet>
         <title>Dashboard | Weather App</title>
       </Helmet>
+
       <Box
         sx={{
           backgroundColor: 'background.default',
@@ -50,23 +51,21 @@ const Dashboard = () => {
           py: 3
         }}
       >
-        <CitySelector
-          onSearch={(city) =>
-            fetchWeatherData(city)
-              .then((data) => {
-                setData(data);
-              })
-              .catch((error) => {
-                // /movies or /categories request failed
-              })
-          }
-        />
         <Container maxWidth={false}>
-          <Grid container spacing={3}>
-            <Grid item lg={12} sm={12} xl={12} xs={12}>
+          <CitySelector
+            onSearch={(city) =>
+              fetchWeatherData(city)
+                .then((data) => {
+                  setData(data);
+                })
+                .catch((error) => {})
+            }
+          />
+          <Grid container direction="column" spacing={3}>
+            <Grid item xs={1}>
               {getCards()}
             </Grid>
-            <Grid item lg={12} md={12} xl={12} xs={12}>
+            <Grid item xs={11}>
               {getChart()}
             </Grid>
           </Grid>

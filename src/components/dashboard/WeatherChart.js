@@ -41,7 +41,7 @@ const WeatherChart = ({ weather }) => {
   };
 
   return (
-    <Card sx={{ minHeight: '100%' }}>
+    <Card sx={{ minWidth: '100%' }}>
       <CardContent>
         <Box
           sx={{
