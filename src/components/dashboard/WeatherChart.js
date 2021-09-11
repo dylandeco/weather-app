@@ -1,7 +1,7 @@
 import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { Box, Card, CardContent } from '@material-ui/core';
+import { Box, Card, CardContent, Grid } from '@material-ui/core';
 
 const WeatherChart = ({ weather }) => {
   const options = {
@@ -18,7 +18,7 @@ const WeatherChart = ({ weather }) => {
         dataLabels: {
           enabled: true
         },
-        enableMouseTracking: false
+        enableMouseTracking: true
       }
     },
     credits: {
@@ -41,12 +41,13 @@ const WeatherChart = ({ weather }) => {
   };
 
   return (
-    <Card sx={{ minWidth: '100%' }}>
+    <Card>
       <CardContent>
         <Box
           sx={{
             height: 400,
-            position: 'relative'
+            position: 'relative',
+            minWidth: '100%'
           }}
         >
           <HighchartsReact

@@ -18,16 +18,17 @@ const CitySelector = ({ onSearch }) => {
   const [city, setCity] = useState('');
 
   return (
-    <Grid container justifyContent="center">
-      <Grid item>
+    <Grid container>
+      <Grid item xs={12}>
         <TextField
           id="filled-full-width"
           label="City"
           style={{
-            margin: 8,
+            margin: 1,
             color: 'black',
             backgroundColor: 'white'
           }}
+          fullWidth
           placeholder="Enter city"
           margin="normal"
           InputLabelProps={{

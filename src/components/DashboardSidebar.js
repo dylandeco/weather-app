@@ -99,7 +99,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
 
   return (
     <>
-      <Hidden xlDown>
+      <Hidden xsDown>
         <Drawer
           anchor="left"
           open
