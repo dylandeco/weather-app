@@ -19,15 +19,14 @@ const CitySelector = ({ onSearch }) => {
 
   return (
     <Grid container justifyContent="center">
-      <Grid item xs={0}>
-        <Input
+      <Grid item>
+        <TextField
           id="filled-full-width"
           label="City"
           style={{
             margin: 8,
             color: 'black',
-            backgroundColor: 'white',
-            borderRadius: 10
+            backgroundColor: 'white'
           }}
           placeholder="Enter city"
           margin="normal"

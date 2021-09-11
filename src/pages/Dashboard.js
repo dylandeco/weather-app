@@ -51,16 +51,16 @@ const Dashboard = () => {
           py: 3
         }}
       >
+        <CitySelector
+          onSearch={(city) =>
+            fetchWeatherData(city)
+              .then((data) => {
+                setData(data);
+              })
+              .catch((error) => {})
+          }
+        />
         <Container maxWidth={false}>
-          <CitySelector
-            onSearch={(city) =>
-              fetchWeatherData(city)
-                .then((data) => {
-                  setData(data);
-                })
-                .catch((error) => {})
-            }
-          />
           <Grid container direction="column" spacing={3}>
             <Grid item xs={1}>
               {getCards()}

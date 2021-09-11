@@ -15,7 +15,10 @@ const DashboardLayoutRoot = experimentalStyled('div')(({ theme }) => ({
 const DashboardLayoutWrapper = experimentalStyled('div')(({ theme }) => ({
   display: 'flex',
   flex: '1 1 auto',
-  overflow: 'hidden'
+  overflow: 'hidden',
+  [theme.breakpoints.up('lg')]: {
+    paddingLeft: 256
+  }
 }));
 
 const DashboardLayoutContainer = experimentalStyled('div')({
