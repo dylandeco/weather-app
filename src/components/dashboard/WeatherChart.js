@@ -13,6 +13,10 @@ const WeatherChart = ({ weather }) => {
         text: 'Temperature (C)'
       }
     },
+    tooltip: {
+      crosshairs: true,
+      shared: true
+    },
     plotOptions: {
       line: {
         dataLabels: {
@@ -34,8 +38,19 @@ const WeatherChart = ({ weather }) => {
     },
     series: [
       {
-        name: 'Temperature (C)',
-        data: weather.map(({ temp }) => temp.day)
+        name: 'High (C)',
+        data: weather.map(({ temp, weather }) => ({
+          y: temp.max,
+          marker: {
+            symbol: `url(http://openweathermap.org/img/w/${weather[0].icon}.png)`
+          }
+        }))
+      },
+      {
+        name: 'Low (C)',
+        data: weather.map(({ temp }) => ({
+          y: temp.min
+        }))
       }
     ]
   };
@@ -45,7 +60,7 @@ const WeatherChart = ({ weather }) => {
       <CardContent>
         <Box
           sx={{
-            height: 400,
+            height: 300,
             position: 'relative',
             minWidth: '100%'
           }}

@@ -14,7 +14,6 @@ import {
   ListItemText
 } from '@material-ui/core';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { BarChart as BarChartIcon, LogOut as Logout } from 'react-feather';
 import CloudIcon from '@material-ui/icons/Cloud';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
