@@ -42,13 +42,13 @@ const Dashboard = () => {
 
   async function fetchWeatherData(city) {
     const locationResponse = await fetch(
-      `${API_URL}/data/2.5/weather?q=${city}&appid=${API_KEY}`
+      `${API_URL}/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
     );
     const location = await locationResponse.json();
     console.log(location);
 
     const weatherResponse = await fetch(
-      `${API_URL}/data/2.5/onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=current,minutely,hourly,alerts&units=metric&cnt=7&appid=${API_KEY}`
+      `${API_URL}/data/2.5/onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=current,minutely,hourly,alerts&units=metric&cnt=7&appid=${process.env.REACT_APP_API_KEY}`
     ).then((response) => response.json());
     //const data = await weatherResponse.json();
     weatherResponse.daily.pop();

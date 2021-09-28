@@ -13,8 +13,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CitySelector = ({ onSearch }) => {
-  const classes = useStyles();
-
   const [city, setCity] = useState('');
 
   return (
