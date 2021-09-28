@@ -51,8 +51,7 @@ const Register = () => {
               password: Yup.string().max(255).required('password is required')
             })}
             onSubmit={(values) => {
-              const url =
-                'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA3naC0zSNEqnpVZmkk4vCErN4zZS2OdM4';
+              const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_AUTH_KEY}`;
               fetch(url, {
                 method: 'POST',
                 body: JSON.stringify({
