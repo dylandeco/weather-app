@@ -50,7 +50,6 @@ const Dashboard = () => {
     const weatherResponse = await fetch(
       `${API_URL}/data/2.5/onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=current,minutely,hourly,alerts&units=metric&cnt=7&appid=${process.env.REACT_APP_API_KEY}`
     ).then((response) => response.json());
-    //const data = await weatherResponse.json();
     weatherResponse.daily.pop();
     return weatherResponse;
   }
