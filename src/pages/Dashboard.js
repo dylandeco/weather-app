@@ -85,13 +85,13 @@ const Dashboard = () => {
               {getCards()}
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={12} md={12} lg={6}>
               {getForecastChart()}
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={12} lg={6}>
               {getRainChart()}
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} lg={12}>
               {getWindChart()}
             </Grid>
           </Grid>

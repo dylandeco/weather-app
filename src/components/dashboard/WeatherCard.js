@@ -14,6 +14,7 @@ const WeatherCard = ({ dt, temp_min, temp_max, temp, main, icon }) => {
           container
           flexDirection="column"
           justifyContent="center"
+          alignItems="center"
           spacing={0}
           px={2}
           xs={{ width: '150px', borderRadius: 10 }}
@@ -29,6 +30,11 @@ const WeatherCard = ({ dt, temp_min, temp_max, temp, main, icon }) => {
           <Grid item>
             <Typography color="textPrimary" variant="h5">
               {`Low ${temp_min}`}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography color="textPrimary" variant="h5">
+              {date.toLocaleDateString()}
             </Typography>
           </Grid>
         </Grid>
