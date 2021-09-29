@@ -2,15 +2,17 @@ import { Helmet } from 'react-helmet';
 import { useState, useEffect } from 'react';
 import { Box, Container, Grid } from '@material-ui/core';
 import CitySelector from 'src/components/dashboard/CitySelector';
-import UseFetch from 'src/hooks/UseFetch';
 import { API_KEY, API_URL } from 'src/api/config';
 import WeatherList from 'src/components/dashboard/WeatherList';
 import WeatherChart from 'src/components/dashboard/WeatherChart';
 import RainChart from 'src/components/dashboard/RainChart';
 import WindChart from 'src/components/dashboard/WindChart';
+import Geocode from 'react-geocode';
 
 const Dashboard = () => {
   const [data, setData] = useState();
+
+  Geocode.setApiKey(process.env.REACT_APP_MAPS_KEY);
 
   const getCards = () => {
     //if (error) return <h2>Error when fetching: {error}</h2>;
@@ -39,6 +41,34 @@ const Dashboard = () => {
     if (!data) return null;
     return <WindChart weather={data.daily} />;
   };
+
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  // When the dashboard is first loaded, get the GeoLocation of the user
+  useEffect(() => {
+    const success = async ({ coords }) => {
+      const weatherResponse = await fetch(
+        `${API_URL}/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&exclude=current,minutely,hourly,alerts&units=metric&cnt=7&appid=${process.env.REACT_APP_API_KEY}`
+      ).then((response) => response.json());
+      weatherResponse.daily.pop();
+      setData(weatherResponse);
+      // Get address from latitude & longitude.
+      Geocode.fromLatLng(coords.latitude, coords.longitude).then(
+        (response) => {
+          const address = response.results[0].formatted_address;
+          console.log(address);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    };
+    navigator.geolocation.getCurrentPosition(success, console.warn, options);
+  }, []);
 
   async function fetchWeatherData(city) {
     const locationResponse = await fetch(
