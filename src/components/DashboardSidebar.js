@@ -74,19 +74,6 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItem>
-          <ListItem
-            sx={{ py: 1 }}
-            component={RouterLink}
-            to="/app/map"
-            button
-            selected={selectedIndex === 1}
-            onClick={(event) => handleListItemClick(event, 1)}
-          >
-            <ListItemIcon>
-              <RoomIcon />
-            </ListItemIcon>
-            <ListItemText primary="Map" />
-          </ListItem>
           <ListItem sx={{ py: 1 }} button onClick={onLogoutHandler}>
             <ListItemIcon>
               <ExitToAppIcon />
