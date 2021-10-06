@@ -18,7 +18,7 @@ const WeatherCard = ({ dt, temp_min, temp_max, temp, main, icon }) => {
           alignItems="center"
           spacing={0}
           px={2}
-          xs={{ width: '150px', borderRadius: 10 }}
+          xs={{ borderRadius: 10 }}
         >
           <Grid item>
             <img src={`http://openweathermap.org/img/w/${icon}.png`} />

@@ -5,9 +5,16 @@ import WeatherCard from './WeatherCard';
 
 const WeatherList = ({ weather }) => {
   return (
-    <Grid container spacing={2} direction="row" justifyContent="center">
+    <Grid
+      container
+      flexWrap="nowrap"
+      overflow="auto"
+      spacing={2}
+      direction="row"
+      justifyContent="center"
+    >
       {weather.map(({ dt, temp, weather }) => (
-        <Grid item>
+        <Grid item minWidth="200px" marginBottom={2}>
           <WeatherCard
             temp_max={temp.max}
             temp_min={temp.min}

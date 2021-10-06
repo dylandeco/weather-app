@@ -14,33 +14,29 @@ const CitySelector = ({ userLocation, onSearch }) => {
   const [city, setCity] = useState(userLocation);
 
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <TextField
-          id="filled-full-width"
-          label="City"
-          style={{
-            margin: 1,
-            color: 'black',
-            backgroundColor: 'white'
-          }}
-          fullWidth
-          placeholder="Enter city"
-          margin="normal"
-          InputLabelProps={{
-            shrink: true
-          }}
-          variant="filled"
-          onChange={(event) => setCity(event.target.value)}
-          value={city}
-          onKeyPress={(e) => {
-            if (e.key === 'Enter') {
-              onSearch(city);
-            }
-          }}
-        />
-      </Grid>
-    </Grid>
+    <TextField
+      id="filled-full-width"
+      label="City"
+      style={{
+        margin: 1,
+        color: 'black',
+        backgroundColor: 'white'
+      }}
+      fullWidth
+      placeholder="Enter city"
+      margin="normal"
+      InputLabelProps={{
+        shrink: true
+      }}
+      variant="filled"
+      onChange={(event) => setCity(event.target.value)}
+      value={city}
+      onKeyPress={(e) => {
+        if (e.key === 'Enter') {
+          onSearch(city);
+        }
+      }}
+    />
   );
 };
 

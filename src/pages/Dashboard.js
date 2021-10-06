@@ -113,23 +113,21 @@ const Dashboard = () => {
         }}
       >
         {!isLoading && (
-          <Container sx={{ display: 'flex', height: '100%' }} maxWidth={true}>
+          <Container display={'flex'} maxWidth={true}>
+            <Box width="100%" marginBottom={2}>
+              <CitySelector
+                userLocation={userLocation}
+                onSearch={(city) =>
+                  fetchWeatherData(city)
+                    .then((data) => {
+                      setData(data);
+                    })
+                    .catch((error) => {})
+                }
+              />
+            </Box>
+            <Box>{getCards()}</Box>
             <Grid container spacing={2} xs={12}>
-              <Grid item xs={12}>
-                <CitySelector
-                  userLocation={userLocation}
-                  onSearch={(city) =>
-                    fetchWeatherData(city)
-                      .then((data) => {
-                        setData(data);
-                      })
-                      .catch((error) => {})
-                  }
-                />
-              </Grid>
-              <Grid item xs={12}>
-                {getCards()}
-              </Grid>
               <Grid item xs={12} md={12} lg={6}>
                 {getForecastChart()}
               </Grid>
