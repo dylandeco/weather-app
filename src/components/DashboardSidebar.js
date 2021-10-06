@@ -45,9 +45,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       <Box
         backgroundColor="#0051cc"
         justifyContent="center"
-        borderBottom={4}
         sx={{
-          borderBottomColor: 'black',
           alignItems: 'center',
           display: 'flex',
           flexDirection: 'row',

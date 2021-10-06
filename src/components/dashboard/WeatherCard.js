@@ -3,6 +3,7 @@ import countries from 'i18n-iso-countries';
 import { makeStyles } from '@material-ui/core/styles';
 
 countries.registerLocale(require('i18n-iso-countries/langs/en.json'));
+var options = { year: 'numeric', month: 'long', day: 'numeric' };
 
 const WeatherCard = ({ dt, temp_min, temp_max, temp, main, icon }) => {
   const date = new Date(dt);
@@ -24,17 +25,17 @@ const WeatherCard = ({ dt, temp_min, temp_max, temp, main, icon }) => {
           </Grid>
           <Grid item>
             <Typography color="textPrimary" variant="h5">
-              {`High ${temp_max}`}
+              {`High ${Math.round(temp_max)}`}
             </Typography>
           </Grid>
           <Grid item>
             <Typography color="textPrimary" variant="h5">
-              {`Low ${temp_min}`}
+              {`Low ${Math.round(temp_min)}`}
             </Typography>
           </Grid>
           <Grid item>
             <Typography color="textPrimary" variant="h5">
-              {date.toLocaleDateString()}
+              {date.toLocaleDateString('en-US', options)}
             </Typography>
           </Grid>
         </Grid>

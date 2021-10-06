@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import UseFetch from 'src/hooks/UseFetch';
-import { API_KEY, API_URL } from 'src/api/config';
-import { Grid, Input } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const CitySelector = ({ onSearch }) => {
-  const [city, setCity] = useState('');
+const CitySelector = ({ userLocation, onSearch }) => {
+  const [city, setCity] = useState(userLocation);
 
   return (
     <Grid container>
