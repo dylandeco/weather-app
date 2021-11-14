@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet';
 import { useState, useEffect } from 'react';
 import { Box, Container, Grid } from '@material-ui/core';
 import CitySelector from 'src/components/dashboard/CitySelector';
-import { API_URL } from 'src/api/config';
 import WeatherList from 'src/components/dashboard/WeatherList';
 import WeatherChart from 'src/components/dashboard/WeatherChart';
 import RainChart from 'src/components/dashboard/RainChart';
@@ -46,7 +45,7 @@ const Dashboard = () => {
   useEffect(() => {
     const success = async ({ coords }) => {
       const weatherResponse = await fetch(
-        `${API_URL}/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&exclude=current,minutely,hourly,alerts&units=metric&cnt=7&appid=${process.env.REACT_APP_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&exclude=current,minutely,hourly,alerts&units=metric&cnt=7&appid=${process.env.REACT_APP_API_KEY}`
       ).then((response) => response.json());
       weatherResponse.daily.pop();
       setData(weatherResponse);
@@ -87,13 +86,13 @@ const Dashboard = () => {
 
   async function fetchWeatherData(city) {
     const locationResponse = await fetch(
-      `${API_URL}/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
     );
     const location = await locationResponse.json();
     console.log(location);
 
     const weatherResponse = await fetch(
-      `${API_URL}/data/2.5/onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=current,minutely,hourly,alerts&units=metric&cnt=7&appid=${process.env.REACT_APP_API_KEY}`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=current,minutely,hourly,alerts&units=metric&cnt=7&appid=${process.env.REACT_APP_API_KEY}`
     ).then((response) => response.json());
     weatherResponse.daily.pop();
     return weatherResponse;
