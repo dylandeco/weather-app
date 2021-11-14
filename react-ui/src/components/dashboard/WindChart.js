@@ -2,7 +2,7 @@ import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import highchartsWindbarb from 'highcharts/modules/windbarb';
-import { Box, Card, CardContent, Grid } from '@material-ui/core';
+import { Box, Card, CardContent } from '@material-ui/core';
 
 highchartsWindbarb(Highcharts);
 

@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  }
-}));
 
 const CitySelector = ({ userLocation, onSearch }) => {
   const [city, setCity] = useState(userLocation);

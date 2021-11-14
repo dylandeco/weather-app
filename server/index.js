@@ -99,6 +99,54 @@ if (!isDev && cluster.isMaster) {
     }
   });
 
+  app.post("/geocode", jsonParser, async function (req, res) {
+    try {
+      const lat = req.body.lat;
+      const lon = req.body.lon;
+      const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${process.env.REACT_APP_MAPS_KEY}`;
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        res.set("Content-Type", "application/json");
+        res.send(data);
+      } else {
+        res.status("400");
+        res.send("geocode fetch failed!");
+      }
+    } catch {}
+  });
+
+  app.post("/location", jsonParser, async function (req, res) {
+    try {
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${req.body.city}&appid=${process.env.REACT_APP_API_KEY}`;
+      const response = await fetch(url);
+      if (response.ok) {
+        const location = await response.json();
+        res.set("Content-Type", "application/json");
+        res.send(location);
+      } else {
+        res.status("400");
+        res.send("Location fetch failed!");
+      }
+    } catch {}
+  });
+
+  app.post("/weather", jsonParser, async function (req, res) {
+    try {
+      const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${req.body.lat}&lon=${req.body.lon}&exclude=current,minutely,hourly,alerts&units=metric&cnt=7&appid=${process.env.REACT_APP_API_KEY}`;
+      const response = await fetch(url);
+      if (response.ok) {
+        const weatherData = await response.json();
+        res.set("Content-Type", "application/json");
+        res.send(weatherData);
+      } else {
+        res.status("400");
+        res.send("Weather fetch failed!");
+      }
+    } catch {}
+  });
+
   // All remaining requests return the React app, so it can handle routing.
   app.get("*", function (request, response) {
     response.sendFile(

@@ -55,7 +55,6 @@
     "react-google-maps": "^9.4.5",
     "react-google-places-autocomplete": "^3.3.2",
     "react-helmet": "^6.1.0",
-    "react-perfect-scrollbar": "^1.5.8",
     "react-places-autocomplete": "^7.3.0",
     "react-router": "^6.0.0-beta.0",
     "react-router-dom": "^6.0.0-beta.0",

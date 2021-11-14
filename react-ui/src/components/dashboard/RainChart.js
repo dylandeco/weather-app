@@ -1,7 +1,7 @@
 import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { Box, Card, CardContent, Grid } from '@material-ui/core';
+import { Box, Card, CardContent } from '@material-ui/core';
 
 const RainChart = ({ weather }) => {
   const options = {
@@ -18,7 +18,7 @@ const RainChart = ({ weather }) => {
           }
         },
         title: {
-          text: 'Percent chance of rain ',
+          text: 'Percent chance of precip ',
           style: {
             //color: Highcharts.getOptions().colors[1]
           }
@@ -77,7 +77,7 @@ const RainChart = ({ weather }) => {
         }
       },
       {
-        name: 'Percent chance of rain',
+        name: 'Percent chance of precip',
         type: 'spline',
         data: weather.map(({ pop }) => ({
           y: pop * 100

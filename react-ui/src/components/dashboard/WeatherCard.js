@@ -1,6 +1,5 @@
 import { Grid, Paper, Typography } from '@material-ui/core';
 import countries from 'i18n-iso-countries';
-import { makeStyles } from '@material-ui/core/styles';
 
 countries.registerLocale(require('i18n-iso-countries/langs/en.json'));
 var options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -21,7 +20,7 @@ const WeatherCard = ({ dt, temp_min, temp_max, temp, main, icon }) => {
           xs={{ borderRadius: 10 }}
         >
           <Grid item>
-            <img src={`http://openweathermap.org/img/w/${icon}.png`} />
+            <img src={`http://openweathermap.org/img/w/${icon}.png`} alt="" />
           </Grid>
           <Grid item>
             <Typography color="textPrimary" variant="h5">

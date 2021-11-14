@@ -1,10 +1,9 @@
-import 'react-perfect-scrollbar/dist/css/styles.css';
 import { useRoutes } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core';
 import GlobalStyles from 'src/components/GlobalStyles';
 import theme from 'src/theme';
 import routes from 'src/routes';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import AuthContext from './store/auth-context';
 import AuthRoutes from './AuthRoutes';
 

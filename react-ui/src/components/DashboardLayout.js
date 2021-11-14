@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Box, experimentalStyled, Typography } from '@material-ui/core';
+import { experimentalStyled } from '@material-ui/core';
 import DashboardSidebar from './DashboardSidebar';
 
 const DashboardLayoutRoot = experimentalStyled('div')(({ theme }) => ({

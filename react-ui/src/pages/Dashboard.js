@@ -6,14 +6,11 @@ import WeatherList from 'src/components/dashboard/WeatherList';
 import WeatherChart from 'src/components/dashboard/WeatherChart';
 import RainChart from 'src/components/dashboard/RainChart';
 import WindChart from 'src/components/dashboard/WindChart';
-import Geocode from 'react-geocode';
 
 const Dashboard = () => {
   const [data, setData] = useState();
   const [userLocation, setUserLocation] = useState();
   const [isLoading, setIsLoading] = useState(true);
-
-  Geocode.setApiKey(process.env.REACT_APP_MAPS_KEY);
 
   const getCards = () => {
     if (!data) return null;
@@ -35,65 +32,88 @@ const Dashboard = () => {
     return <WindChart weather={data.daily} />;
   };
 
-  const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
-
   // When the dashboard is first loaded, get the GeoLocation of the user
   useEffect(() => {
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
     const success = async ({ coords }) => {
-      const weatherResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&exclude=current,minutely,hourly,alerts&units=metric&cnt=7&appid=${process.env.REACT_APP_API_KEY}`
-      ).then((response) => response.json());
+      const response = await fetch('/weather', {
+        method: 'POST',
+        body: JSON.stringify({
+          lat: coords.latitude,
+          lon: coords.longitude
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const weatherResponse = await response.json();
       weatherResponse.daily.pop();
       setData(weatherResponse);
 
       // Get address from latitude & longitude.
-      Geocode.fromLatLng(coords.latitude, coords.longitude).then(
-        (response) => {
-          let city;
-          for (
-            let i = 0;
-            i < response.results[0].address_components.length;
-            i++
-          ) {
-            for (
-              let j = 0;
-              j < response.results[0].address_components[i].types.length;
-              j++
-            ) {
-              switch (response.results[0].address_components[i].types[j]) {
-                case 'locality':
-                  city = response.results[0].address_components[i].long_name;
-                  break;
-              }
-            }
-          }
-          setUserLocation(city);
-          setIsLoading(false);
-          console.log(city);
-        },
-        (error) => {
-          console.error(error);
+      const geocodeResponse = await fetch('/geocode', {
+        method: 'POST',
+        body: JSON.stringify({
+          lat: coords.latitude,
+          lon: coords.longitude
+        }),
+        headers: {
+          'Content-Type': 'application/json'
         }
-      );
+      });
+      const data = await geocodeResponse.json();
+      let city;
+      for (let i = 0; i < data.results[0].address_components.length; i++) {
+        for (
+          let j = 0;
+          j < data.results[0].address_components[i].types.length;
+          j++
+        ) {
+          switch (data.results[0].address_components[i].types[j]) {
+            case 'locality':
+              city = data.results[0].address_components[i].long_name;
+              break;
+            default:
+              break;
+          }
+        }
+      }
+      setUserLocation(city);
+      setIsLoading(false);
     };
     // Get the current location of the user and display when they first login
     navigator.geolocation.getCurrentPosition(success, console.warn, options);
   }, []);
 
   async function fetchWeatherData(city) {
-    const locationResponse = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
-    );
+    const locationResponse = await fetch(`/location`, {
+      method: 'POST',
+      body: JSON.stringify({
+        city: city
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
     const location = await locationResponse.json();
     console.log(location);
 
-    const weatherResponse = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${location.coord.lat}&lon=${location.coord.lon}&exclude=current,minutely,hourly,alerts&units=metric&cnt=7&appid=${process.env.REACT_APP_API_KEY}`
-    ).then((response) => response.json());
+    const response = await fetch('/weather', {
+      method: 'POST',
+      body: JSON.stringify({
+        lat: location.coord.lat,
+        lon: location.coord.lon
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const weatherResponse = await response.json();
     weatherResponse.daily.pop();
     return weatherResponse;
   }

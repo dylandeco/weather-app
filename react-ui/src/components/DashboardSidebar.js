@@ -2,9 +2,7 @@ import { useState, useContext } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
-  Avatar,
   Box,
-  Grid,
   Divider,
   Drawer,
   Hidden,
@@ -18,7 +16,6 @@ import CloudIcon from '@material-ui/icons/Cloud';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AuthContext from 'src/store/auth-context';
-import RoomIcon from '@material-ui/icons/Room';
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { Box, Card, CardContent, Grid } from '@material-ui/core';
+import { Box, Card, CardContent } from '@material-ui/core';
 
 const WeatherChart = ({ weather }) => {
   const options = {
