@@ -50,46 +50,23 @@ const Register = () => {
               lastName: Yup.string().max(255).required('Last name is required'),
               password: Yup.string().max(255).required('password is required')
             })}
-            onSubmit={(values) => {
-              const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_AUTH_KEY}`;
-              fetch(url, {
+            onSubmit={async (values) => {
+              const response = await fetch('/register', {
                 method: 'POST',
                 body: JSON.stringify({
                   email: values.email,
-                  password: values.password,
-                  returnSecureToken: true
+                  password: values.password
                 }),
                 headers: {
                   'Content-Type': 'application/json'
                 }
-              })
-                .then((res) => {
-                  //setIsLoading(false);
-                  if (res.ok) {
-                    return res.json();
-                  } else {
-                    return res.json().then((data) => {
-                      let errorMessage = 'Authentication failed!';
-                      // if (data && data.error && data.error.message) {
-                      //   errorMessage = data.error.message;
-                      // }
-
-                      throw new Error(errorMessage);
-                    });
-                  }
-                })
-                .then((data) => {
-                  /*
-                    const expirationTime = new Date(
-                      new Date().getTime() + +data.expiresIn * 1000
-                    );
-                    */
-                  //authCtx.login(data.idToken, expirationTime.toISOString());
-                  navigate('/app/dashboard', { replace: true });
-                })
-                .catch((err) => {
-                  alert(err.message);
-                });
+              });
+              if (response.ok) {
+                navigate('/app/login', { replace: true });
+              } else {
+                const text = await response.text();
+                alert(text);
+              }
             }}
           >
             {({
