@@ -4,7 +4,7 @@ import { Box, Container, Typography } from '@material-ui/core';
 const NotFound = () => (
   <>
     <Helmet>
-      <title>404 | Material Kit</title>
+      <title>WeatherJS</title>
     </Helmet>
     <Box
       sx={{

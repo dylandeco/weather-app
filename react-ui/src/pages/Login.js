@@ -20,7 +20,7 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Login | Weather app</title>
+        <title>WeatherJS</title>
       </Helmet>
       <Box
         sx={{
@@ -120,12 +120,34 @@ const Login = () => {
                     Sign in now
                   </Button>
                 </Box>
-                <Typography color="textSecondary" variant="body1">
-                  Don&apos;t have an account?{' '}
-                  <Link component={RouterLink} to="/register" variant="h6">
+                <Box display="flex" flexGrow="1">
+                  <Typography color="textSecondary" variant="body1">
+                    Don&apos;t have an account?
+                  </Typography>
+                  <Link
+                    component={RouterLink}
+                    to="/register"
+                    variant="h6"
+                    sx={{ mx: 0.5, mt: 0.2 }}
+                  >
                     Sign up
                   </Link>
-                </Typography>
+                  <Typography color="textSecondary" variant="body1">
+                    or
+                  </Typography>
+                  <Link
+                    component="button"
+                    type="submit"
+                    variant="h6"
+                    sx={{ cursor: 'pointer', mx: 0.5, mt: 0.2 }}
+                    onClick={() => {
+                      values.email = 'Guest@Guest.com';
+                      values.password = 'TestPassword';
+                    }}
+                  >
+                    Sign in as guest
+                  </Link>
+                </Box>
               </form>
             )}
           </Formik>

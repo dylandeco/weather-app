@@ -18,7 +18,7 @@ const Register = () => {
   return (
     <>
       <Helmet>
-        <title>Register | Weather app</title>
+        <title>WeatherJS</title>
       </Helmet>
       <Box
         sx={{

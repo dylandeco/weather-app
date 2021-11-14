@@ -121,7 +121,7 @@ const Dashboard = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard | Weather App</title>
+        <title>WeatherJS</title>
       </Helmet>
 
       <Box
